@@ -1,0 +1,152 @@
+
+CREATE OR REPLACE DATABASE iceberg_tutorial_db;
+
+USE DATABASE iceberg_tutorial_db;
+
+describe external volume youtube_iceberg_external_volume
+
+CREATE OR REPLACE EXTERNAL VOLUME youtube_iceberg_external_volume
+   STORAGE_LOCATIONS =
+      (
+         (
+            NAME = 'my-s3-us-east-1'
+            STORAGE_PROVIDER = 'S3'
+            STORAGE_BASE_URL = 's3://praveen--bucket//'
+            STORAGE_AWS_ROLE_ARN = 'arn:aws:iam::123456:role/ypolaris_catalog_role'
+            STORAGE_AWS_EXTERNAL_ID = 'iceberg_tbl_external_id'
+         )
+      );
+
+
+CREATE OR REPLACE ICEBERG TABLE customer_iceberg (
+    c_custkey INTEGER,
+    c_name STRING,
+    c_address STRING,
+    c_nationkey INTEGER,
+    c_phone STRING,
+    c_acctbal INTEGER,
+    c_mktsegment STRING,
+    c_comment STRING
+)
+    CATALOG = 'SNOWFLAKE'
+    EXTERNAL_VOLUME = 'youtube_iceberg_external_volume'
+    BASE_LOCATION = 'customer_iceberg';
+
+
+INSERT INTO customer_iceberg
+  SELECT * FROM snowflake_sample_data.tpch_sf1.customer;
+
+CREATE OR REPLACE CATALOG INTEGRATION youtube_polaris_integration
+  CATALOG_SOURCE = POLARIS
+  TABLE_FORMAT = ICEBERG
+  CATALOG_NAMESPACE = 'cpr_namespace'
+  REST_CONFIG = (
+    CATALOG_URI = 'https://xy123456.us-ewest-1.snowflakecomputing.com/polaris/api/catalog'
+    WAREHOUSE = 'YouTube_praveen_ext_catalog'
+  )
+  REST_AUTHENTICATION = (
+    TYPE = OAUTH
+    OAUTH_CLIENT_ID='dgasfbdfdfg+Q=' 
+    OAUTH_CLIENT_SECRET='bafbafdgadfbfdbna//nTSCCIeQ=' 
+    OAUTH_ALLOWED_SCOPES = ('PRINCIPAL_ROLE:ALL')
+  )
+  ENABLED = TRUE;
+
+DESCRIBE CATALOG INTEGRATION praveen_polaris_integration6
+
+  -- drop table customer_iceberg_cpr
+  CREATE OR REPLACE ICEBERG TABLE customer_iceberg_cpr (
+    c_custkey INTEGER,
+    c_name STRING,
+    c_address STRING,
+    c_nationkey INTEGER,
+    c_phone STRING,
+    c_acctbal INTEGER,
+    c_mktsegment STRING,
+    c_comment STRING
+)  
+  CATALOG = 'SNOWFLAKE'
+  EXTERNAL_VOLUME = 'youtube_iceberg_external_volume'
+  BASE_LOCATION = 'customer_iceberg'
+  CATALOG_SYNC = 'youtube_polaris_integration';
+
+
+
+  SELECT VALUE[0]::STRING AS tableName,
+       VALUE[1]::BOOLEAN notificationStatus,
+       VALUE[2]::STRING errorCode,
+       VALUE[3]::STRING errorMessage
+   FROM TABLE(FLATTEN(PARSE_JSON(
+     SELECT SYSTEM$SEND_NOTIFICATIONS_TO_CATALOG(
+       'TABLE',
+       'customer_iceberg_cpr',
+       'UPDATE',
+       'youtube_polaris_integration'))));
+
+       
+----------
+trust relationship
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::124345:user/ndfsdfr0000-s"
+            },
+            "Action": "sts:AssumeRole",
+            "Condition": {
+                "StringEquals": {
+                    "sts:ExternalId": "iceberg_table_external_id"
+                }
+            }
+        },
+        {
+            "Sid": "",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::123435:user/vds0000-s"
+            },
+            "Action": "sts:AssumeRole",
+            "Condition": {
+                "StringEquals": {
+                    "sts:ExternalId": "iceberg_table_external_id"
+                }
+            }
+        }
+    ]
+}
+
+----policy----
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:PutObject",
+                "s3:GetObject",
+                "s3:GetObjectVersion",
+                "s3:DeleteObject",
+                "s3:DeleteObjectVersion"
+            ],
+            "Resource": "arn:aws:s3:::cprreddy-snowflake-bucket/*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:ListBucket",
+                "s3:GetBucketLocation"
+            ],
+            "Resource": "arn:aws:s3:::cprreddy-snowflake-bucket",
+            "Condition": {
+                "StringLike": {
+                    "s3:prefix": [
+                        "*"
+                    ]
+                }
+            }
+        }
+    ]
+}
