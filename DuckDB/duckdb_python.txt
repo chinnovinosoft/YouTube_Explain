@@ -1,0 +1,381 @@
+
+(base) praveenreddy@Praveens-MacBook-Air duck_db % ls
+department.csv	student.csv
+(base) praveenreddy@Praveens-MacBook-Air duck_db % cat student.csv 
+student_id,student_name,age,department_id
+101,Alice,20,1
+102,Bob,21,2
+103,Charlie,22,3
+104,Diana,23,2
+105,Eve,20,1
+
+(base) praveenreddy@Praveens-MacBook-Air duck_db % cat department.csv 
+department_id,department_name,budget
+1,Computer Science,50000
+2,Mathematics,40000
+3,Physics,45000
+4,Chemistry,30000
+
+(base) praveenreddy@Praveens-MacBook-Air duck_db % python
+Python 3.12.2 | packaged by conda-forge | (main, Feb 16 2024, 20:54:21) [Clang 16.0.6 ] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import duckdb
+>>> duckdb.sql('select 1 as colA union all select 2 as colA').show()
+┌───────┐
+│ colA  │
+│ int32 │
+├───────┤
+│     1 │
+│     2 │
+└───────┘
+
+>>> duckdb.read_csv('student.csv').show()
+┌────────────┬──────────────┬───────┬───────────────┐
+│ student_id │ student_name │  age  │ department_id │
+│   int64    │   varchar    │ int64 │     int64     │
+├────────────┼──────────────┼───────┼───────────────┤
+│        101 │ Alice        │    20 │             1 │
+│        102 │ Bob          │    21 │             2 │
+│        103 │ Charlie      │    22 │             3 │
+│        104 │ Diana        │    23 │             2 │
+│        105 │ Eve          │    20 │             1 │
+└────────────┴──────────────┴───────┴───────────────┘
+
+>>> duckdb.read_csv('department.csv').show()
+┌───────────────┬──────────────────┬────────┐
+│ department_id │ department_name  │ budget │
+│     int64     │     varchar      │ int64  │
+├───────────────┼──────────────────┼────────┤
+│             1 │ Computer Science │  50000 │
+│             2 │ Mathematics      │  40000 │
+│             3 │ Physics          │  45000 │
+│             4 │ Chemistry        │  30000 │
+└───────────────┴──────────────────┴────────┘
+
+>>> duckdb.sql('select * from student.csv').show()
+┌────────────┬──────────────┬───────┬───────────────┐
+│ student_id │ student_name │  age  │ department_id │
+│   int64    │   varchar    │ int64 │     int64     │
+├────────────┼──────────────┼───────┼───────────────┤
+│        101 │ Alice        │    20 │             1 │
+│        102 │ Bob          │    21 │             2 │
+│        103 │ Charlie      │    22 │             3 │
+│        104 │ Diana        │    23 │             2 │
+│        105 │ Eve          │    20 │             1 │
+└────────────┴──────────────┴───────┴───────────────┘
+
+>>> duckdb.read_csv('student.csv',header=False,sep=',').show()
+┌────────────┬──────────────┬─────────┬───────────────┐
+│  column0   │   column1    │ column2 │    column3    │
+│  varchar   │   varchar    │ varchar │    varchar    │
+├────────────┼──────────────┼─────────┼───────────────┤
+│ student_id │ student_name │ age     │ department_id │
+│ 101        │ Alice        │ 20      │ 1             │
+│ 102        │ Bob          │ 21      │ 2             │
+│ 103        │ Charlie      │ 22      │ 3             │
+│ 104        │ Diana        │ 23      │ 2             │
+│ 105        │ Eve          │ 20      │ 1             │
+└────────────┴──────────────┴─────────┴───────────────┘
+
+>>> duckdb.read_csv('student.csv',dtype=['int','varchar','int','int']).show()
+┌────────────┬──────────────┬───────┬───────────────┐
+│ student_id │ student_name │  age  │ department_id │
+│   int32    │   varchar    │ int32 │     int32     │
+├────────────┼──────────────┼───────┼───────────────┤
+│        101 │ Alice        │    20 │             1 │
+│        102 │ Bob          │    21 │             2 │
+│        103 │ Charlie      │    22 │             3 │
+│        104 │ Diana        │    23 │             2 │
+│        105 │ Eve          │    20 │             1 │
+└────────────┴──────────────┴───────┴───────────────┘
+
+>>> import pandas as pd 
+>>> df = pd.DataFrame({'cola':[123,456,789],'colb':[111,222,333]})
+>>> df.head()
+   cola  colb
+0   123   111
+1   456   222
+2   789   333
+>>> duckdb.sql('select * from df').show()
+┌───────┬───────┐
+│ cola  │ colb  │
+│ int64 │ int64 │
+├───────┼───────┤
+│   123 │   111 │
+│   456 │   222 │
+│   789 │   333 │
+└───────┴───────┘
+
+>>> duckdb.sql('select * from df').write_parquet('parquet_df.parquet')
+>>> duckdb.sql('select * from parquet_df.parquet ').show()
+┌───────┬───────┐
+│ cola  │ colb  │
+│ int64 │ int64 │
+├───────┼───────┤
+│   123 │   111 │
+│   456 │   222 │
+│   789 │   333 │
+└───────┴───────┘
+
+>>> duckdb.sql('copy (select * from df) to parquet_df2.parquet')
+>>> duckdb.sql('select * from parquet_df2.parquet ').show()
+┌───────┬───────┐
+│ cola  │ colb  │
+│ int64 │ int64 │
+├───────┼───────┤
+│   123 │   111 │
+│   456 │   222 │
+│   789 │   333 │
+└───────┴───────┘
+
+>>> exit()
+(base) praveenreddy@Praveens-MacBook-Air duck_db % 
+(base) praveenreddy@Praveens-MacBook-Air duck_db % 
+(base) praveenreddy@Praveens-MacBook-Air duck_db % duckb --csv test.db
+zsh: command not found: duckb
+(base) praveenreddy@Praveens-MacBook-Air duck_db % duckb --csv test.db
+zsh: command not found: duckb
+(base) praveenreddy@Praveens-MacBook-Air duck_db % duckdb --csv test.db
+v1.1.3 19864453f7
+Enter ".help" for usage hints.
+D create table testtab(col1 int,col2 varchar);
+D insert into testtab values(1,'Hi');
+D insert into testtab values(2,'Hello');
+D select * from testtab;
+col1,col2
+1,Hi
+2,Hello
+D 
+D .exit
+(base) praveenreddy@Praveens-MacBook-Air duck_db % python
+Python 3.12.2 | packaged by conda-forge | (main, Feb 16 2024, 20:54:21) [Clang 16.0.6 ] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import duckdb
+>>> import pandas as pd
+>>> conn = duckdb.connect('test.db')
+>>> conn.sql('select * from testtab').show()
+┌───────┬─────────┐
+│ col1  │  col2   │
+│ int32 │ varchar │
+├───────┼─────────┤
+│     1 │ Hi      │
+│     2 │ Hello   │
+└───────┴─────────┘
+
+>>> conn.sql("insert into testtab values(3,'GoodMorning')");
+>>> conn.sql('select * from testtab');
+┌───────┬─────────────┐
+│ col1  │    col2     │
+│ int32 │   varchar   │
+├───────┼─────────────┤
+│     1 │ Hi          │
+│     2 │ Hello       │
+│     3 │ GoodMorning │
+└───────┴─────────────┘
+
+>>> duckdb.read_csv('student.csv',header=False,sep=',').show()
+┌────────────┬──────────────┬─────────┬───────────────┐
+│  column0   │   column1    │ column2 │    column3    │
+│  varchar   │   varchar    │ varchar │    varchar    │
+├────────────┼──────────────┼─────────┼───────────────┤
+│ student_id │ student_name │ age     │ department_id │
+│ 101        │ Alice        │ 20      │ 1             │
+│ 102        │ Bob          │ 21      │ 2             │
+│ 103        │ Charlie      │ 22      │ 3             │
+│ 104        │ Diana        │ 23      │ 2             │
+│ 105        │ Eve          │ 20      │ 1             │
+└────────────┴──────────────┴─────────┴───────────────┘
+
+>>> conn2 = duckdb.connect(database=':memory:')
+>>> conn2.execute('show tables')
+<duckdb.duckdb.DuckDBPyConnection object at 0x1031443f0>
+>>> conn2.execute('show tables').fetchall()
+[]
+>>> conn2 = duckdb.connect(database='test.db')
+>>> conn2.execute('show tables').fetchall()
+[('testtab',)]
+>>> conn2.execute('select * from testtab').fetchall()
+[(1, 'Hi'), (2, 'Hello'), (3, 'GoodMorning')]
+>>> conn2.execute('select * from testtab').fetchone()
+(1, 'Hi')
+>>> conn2.execute("INSERT INTO testtab VALUES(?,?)",[4,"GoodEve"])
+<duckdb.duckdb.DuckDBPyConnection object at 0x12b6aa1f0>
+>>> conn2.execute('select * from testtab').fetchall()
+[(1, 'Hi'), (2, 'Hello'), (3, 'GoodMorning'), (4, 'GoodEve')]
+>>> conn2.executemany("INSERT INTO testtab VALUES(?,?)",[[5,"GoodAft"],[6,"GoodNght"]])
+<duckdb.duckdb.DuckDBPyConnection object at 0x12b6aa1f0>
+>>> conn2.execute('select * from testtab').fetchall()
+[(1, 'Hi'), (2, 'Hello'), (3, 'GoodMorning'), (4, 'GoodEve'), (5, 'GoodAft'), (6, 'GoodNght')]
+>>> df1 = duckdb.sql('select 1 as colA UNION ALL select 2 as colA UNION ALL select 3 as colA UNION ALL select 4 as colA')
+>>> df2 = duckdb.sql('select 3 as colA UNION ALL select 4 as colA UNION ALL select 5 as colA UNION ALL select 6 as colA')
+>>> df1.except_(df2).show()
+┌───────┐
+│ colA  │
+│ int32 │
+├───────┤
+│     1 │
+│     2 │
+└───────┘
+
+>>> df2.except_(df1).show()
+┌───────┐
+│ colA  │
+│ int32 │
+├───────┤
+│     6 │
+│     5 │
+└───────┘
+
+>>> df1.filter("colA %2==0").show()
+┌───────┐
+│ colA  │
+│ int32 │
+├───────┤
+│     2 │
+│     4 │
+└───────┘
+
+>>> df1.intersect(df2).show()
+┌───────┐
+│ colA  │
+│ int32 │
+├───────┤
+│     4 │
+│     3 │
+└───────┘
+
+>>> df2.intersect(df1).show()
+┌───────┐
+│ colA  │
+│ int32 │
+├───────┤
+│     4 │
+│     3 │
+└───────┘
+
+>>> df1.join(df2, "colA", how="inner").show()
+┌───────┐
+│ colA  │
+│ int32 │
+├───────┤
+│     3 │
+│     4 │
+└───────┘
+
+>>> result = duckdb.sql("""
+...     SELECT *
+...     FROM df1
+...     INNER JOIN df2
+...     USING (colA)
+... """)
+>>> result.show()
+┌───────┐
+│ colA  │
+│ int32 │
+├───────┤
+│     3 │
+│     4 │
+└───────┘
+
+>>> df1.order('colA').limit(2)
+┌───────┐
+│ colA  │
+│ int32 │
+├───────┤
+│     1 │
+│     2 │
+└───────┘
+
+>>> df1.union(df2).show()
+┌───────┐
+│ colA  │
+│ int32 │
+├───────┤
+│     1 │
+│     2 │
+│     3 │
+│     4 │
+│     3 │
+│     4 │
+│     5 │
+│     6 │
+└───────┘
+
+>>> from faker import Faker
+>>> def generate_names(suffix):
+...     fake = Faker()
+...     return str(fake.name() + suffix)
+... 
+>>> duckdb.create_function("gen_names_suf", generate_names, [str], str)
+<duckdb.duckdb.DuckDBPyConnection object at 0x10304b4b0>
+>>> duckdb.sql("SELECT gen_names_suf(' Reddy') AS name").show()
+┌─────────────────┐
+│      name       │
+│     varchar     │
+├─────────────────┤
+│ Tina Lowe Reddy │
+└─────────────────┘
+
+>>> def my_function(x: int) -> str:
+...     return str(x*x)
+... 
+>>> duckdb.create_function("my_func", my_function,[int],str)
+<duckdb.duckdb.DuckDBPyConnection object at 0x10304b4b0>
+>>> print(duckdb.sql("SELECT my_func(10)"))
+┌─────────────┐
+│ my_func(10) │
+│   varchar   │
+├─────────────┤
+│ 100         │
+└─────────────┘
+
+>>> duckdb.remove_function('my_func')
+<duckdb.duckdb.DuckDBPyConnection object at 0x10304b4b0>
+>>> def my_function(x: int) -> str:
+...     raise Exception("ERRORRR")
+... 
+>>> duckdb.create_function("my_func2", my_function,[int],str,exception_handling='return_null')
+<duckdb.duckdb.DuckDBPyConnection object at 0x10304b4b0>
+>>> print(duckdb.sql("SELECT my_func2(42)"))
+┌──────────────┐
+│ my_func2(42) │
+│   varchar    │
+├──────────────┤
+│ NULL         │
+└──────────────┘
+
+>>> from duckdb.experimental.spark.sql import SparkSession as session
+>>> from duckdb.experimental.spark.sql.functions import lit, col
+>>> import pandas as pd
+>>> spark = session.builder.getOrCreate()
+>>> pandas_df = pd.DataFrame({'id':[1,2,3,4],'name':['praveen','reddy','chinna','reddy'],'city':['hyd','hyd','hyd','chn']})
+>>> pandas_df.head()
+   id     name city
+0   1  praveen  hyd
+1   2    reddy  hyd
+2   3   chinna  hyd
+3   4    reddy  chn
+>>> df = spark.createDataFrame(pandas_df)
+>>> df.show()
+┌───────┬─────────┬─────────┐
+│  id   │  name   │  city   │
+│ int64 │ varchar │ varchar │
+├───────┼─────────┼─────────┤
+│     1 │ praveen │ hyd     │
+│     2 │ reddy   │ hyd     │
+│     3 │ chinna  │ hyd     │
+│     4 │ reddy   │ chn     │
+└───────┴─────────┴─────────┘
+
+>>> df.filter(col('city')=='hyd').show()
+┌───────┬─────────┬─────────┐
+│  id   │  name   │  city   │
+│ int64 │ varchar │ varchar │
+├───────┼─────────┼─────────┤
+│     1 │ praveen │ hyd     │
+│     2 │ reddy   │ hyd     │
+│     3 │ chinna  │ hyd     │
+└───────┴─────────┴─────────┘
+
+>>> 
+
