@@ -1,0 +1,40 @@
+fetch_cricketer_scores_task:
+  description: >
+    Retrieves the scores of the cricketer: {cricketer_name} for the year: {year}.
+  expected_output: >
+    A detailed list of scores like, runs, total 100's, total 50's, highest scores and performance statistics of {cricketer_name} during the year {year}.
+  agent: stats_fetcher
+
+
+calculate_cricketer_averages_task:
+  description: >
+    Calculates the average runs, average 50's, average 100's, average wickets,
+    and the highest score for the cricketer: {cricketer_name} during the year: {year}.
+  expected_output: >
+    A summary of the cricketer's averages, including:
+    - Average runs: 
+    - Average 50's: 
+    - Average 100's: 
+    - Average wickets: 
+    - Highest score: 
+  agent: stats_calculator
+
+create_performance_graph_task:
+  description: >
+    Generates a graph visualizing the cricketer: {cricketer_name}'s performance 
+    metrics for the year: {year}, including runs, 50's, 100's, wickets, and highest score.
+  expected_output: >
+    A graph image or chart that visually represents the cricketer's performance for the year.
+  agent: graph_creator
+
+
+
+
+# text_segregator_task:
+#   description: >
+#     Segregates the provided text into age-appropriate categories for effective communication.
+#   expected_output: >
+#     The input text organized into specific age categories, such as children, teenagers, and adults.
+#   agent: text_segregator
+#   context:
+#       - text_summariser_task
