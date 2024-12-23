@@ -1,0 +1,18 @@
+resumebuilder_task:
+  description: >
+    Conduct a thorough research about Data Engineering
+    Make sure you find any interesting and relevant technologies given
+    the current year is 2024.
+  expected_output: >
+    A clear resume for the Tech Stack Data Engieering
+  agent: resumebuilder
+
+resumereviewandreconstruct_task:
+  description: >
+    Review the resume you got and correct the resume by adding the points you feel are correct and 
+    remove the points which feel are irrelavant . Don't miss out to add the 2 projects and the tech stacks related to Data Engineering
+  expected_output: >
+    A perfect resume for Data Engieering skill set for a 5 years old person.
+    Formatted as text file
+  agent: resumereviewandreconstruct
+  output_file: resume.txt
