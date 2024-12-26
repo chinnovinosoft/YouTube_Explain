@@ -1,0 +1,6 @@
+analyze_csv_task:
+  description: >
+    Read and understand the user queries and Processes user queries on the CSV data and returns appropriate results.
+  expected_output: >
+    A The response should have college name and A clear and concise response to the user's query : {query} based on the CSV data. 
+  agent: csv_analyzer

@@ -1,0 +1,21 @@
+Student_ID,Student_Name,University,Sport,Competition,Year,Achievement,Score
+S0001,Aarav Sharma,Indian Institute of Technology Delhi,Basketball,International Meet,2014,Participation,85
+S0002,Ananya Gupta,University of Mumbai,Swimming,Inter-College Meet,2018,Gold,92
+S0003,Rohan Iyer,Jawaharlal Nehru University,Athletics,International Meet,2021,Bronze,75
+S0004,Krishna Reddy,Osmania University,Cricket,International Meet,2016,Gold,88
+S0005,Priya Mehta,Amity University,Baseball,Inter-College Meet,2016,Bronze,77
+S0006,Ishita Patel,Banaras Hindu University,Athletics,City League,2020,Gold,91
+S0007,Vikram Das,Indian Institute of Technology Delhi,Volleyball,National Championship,2019,Silver,82
+S0008,Rahul Nair,University of Calcutta,Tennis,Inter-College Meet,2023,Gold,87
+S0009,Simran Kaur,Panjab University,Football,Inter-College Meet,2017,Silver,79
+S0010,Sanya Kapoor,Jawaharlal Nehru University,Basketball,International Meet,2019,Gold,93
+S0011,Kabir Joshi,Christ University,Football,National Championship,2018,Participation,76
+S0012,Tanvi Jain,Aligarh Muslim University,Baseball,National Championship,2015,Gold,71
+S0013,Arjun Mishra,Savitribai Phule Pune University,Cricket,State Tournament,2018,Gold,96
+S0014,Manasi Kulkarni,Visva-Bharati University,Athletics,State Tournament,2019,Silver,86
+S0015,Aditya Rao,Indian Institute of Technology Delhi,Tennis,National Championship,2021,Gold,94
+S0016,Neha Verma,University of Mumbai,Athletics,Inter-College Meet,2022,Silver,83
+S0017,Siddharth Menon,University of Mumbai,Football,Inter-College Meet,2020,Bronze,77
+S0018,Meera Chopra,Amity University,Swimming,National Championship,2019,Gold,90
+S0019,Karan Singh,Jawaharlal Nehru University,Volleyball,State Tournament,2018,Silver,80
+S0020,Rajesh Patel,Panjab University,Cricket,International Meet,2022,Gold,98
