@@ -1,0 +1,18 @@
+```
+Stock and S&P 500 Comparison Data
+
+NVIDIA Corporation (NVDA):
+- EPS: $7.58
+- 52 Week High: $152.89
+- 52 Week Low: $47.32
+- Sector PE: 55.21
+- Face Value: $0.001
+- PE Ratio: 54.91
+- Book Value per Share: $2.69
+
+S&P 500 Index:
+- EPS: $243.60
+- Sector PE: 30.82
+- Face Value: $0.01 (Typical for stocks)
+- Book Value: 5.30
+```

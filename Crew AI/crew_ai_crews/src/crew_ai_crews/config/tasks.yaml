@@ -1,0 +1,29 @@
+stock_research_task:
+  description: >
+    Research detailed stock information including EPS, high, low, sector PE, face value, PE, book value for stock : {stock}.
+  expected_output: >
+    A dataset containing detailed stock metrics for the specified company.
+  agent: stock_researcher
+
+sp_data_task:
+  description: >
+    Retrieve and summarize the key performance metrics of the S&P 500 index, focusing on relevant comparisons to individual stocks.
+  expected_output: >
+    A summary of S&P 500 metrics, including benchmarks for performance evaluation.
+  agent: sp_researcher
+
+data_preparation_task:
+  description: >
+    Create a text file that organizes stock and S&P 500 data for comparison.
+    Include the following fields: EPS, high, low, sector PE, face value, PE, book value.
+  expected_output: >
+    A structured text file containing the compiled data.
+  agent: data_preparer
+
+comparison_and_graph_task:
+  description: >
+    Compare the stock data with S&P 500 benchmarks across the following metrics: EPS, high, low, sector PE, face value, PE, book value.
+    Generate a clear graph comparision both {stock} & S&P 500 with all the metrics mentioned above using python & a table that visualizes these comparisons.
+  expected_output: >
+    A clear graph comparing both {stock} & S&P 500 with all the metrics mentioned above and a table visualizing stock data against S&P 500 benchmarks and a brief written analysis of the trends by saving it in a file.
+  agent: data_analyst
