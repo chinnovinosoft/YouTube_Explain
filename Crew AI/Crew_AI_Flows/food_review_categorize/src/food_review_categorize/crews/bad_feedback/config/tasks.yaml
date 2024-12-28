@@ -1,0 +1,13 @@
+handle_negative_feedback_tasks:
+  description: >
+    Apologize to the customer for their bad experience, provide a coupon code(Generate the random String which acts as coupon code), and log the feedback in the database. Here is the review/feedback message {review} and the resturant name : {restaurant_name}
+  expected_output: >
+    A one-liner apology message and a coupon code for the customer.
+  agent: negative_feedback_agent
+
+update_db_tasks:
+  description: >
+    Log bad feedback along with the apology message and coupon code into the PostgreSQL database. Here is the review/feedback message {review} and the resturant name : {restaurant_name}
+  expected_output: >
+    Confirmation of follwoing feedback_message : {review} , restaurant_name : {restaurant_name} after logging to database successfully.
+  agent: db_update_agent

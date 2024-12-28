@@ -1,0 +1,6 @@
+handle_neutral_feedback_task:
+  description: >
+    Suggest alternative restaurants to the customer after receiving neutral feedback. The Resturants to suggest are The Good Vibes Only(For Italian), Kodi Kura Chitti Gare(For Indian), Raise the Bar(For Bar)
+  expected_output: >
+    A list of alternative restaurants for better dining experiences. Should be one among these :: The Good Vibes Only(For Italian), Kodi Kura Chitti Gare(For Indian), Raise the Bar(For Bar)
+  agent: neutral_feedback_agent

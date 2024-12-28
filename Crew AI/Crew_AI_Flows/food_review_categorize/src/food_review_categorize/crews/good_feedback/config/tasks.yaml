@@ -1,0 +1,6 @@
+handle_positive_feedback_task:
+  description: >
+    Generate a motivational one-liner to encourage the customer to order again after receiving good feedback.
+  expected_output: >
+    A motivational one-liner encouraging the customer to order again.
+  agent: positive_feedback_agent
