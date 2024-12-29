@@ -1,0 +1,8 @@
+chat_task:
+  description: >
+    Respond to user questions in a conversational manner.
+    Ensure the answers are accurate, engaging, and tailored to the user's query. Here is the query : {query}.
+  expected_output: >
+    A conversational response that answers the user's question
+    clearly and keeps the interaction friendly and engaging.
+  agent: chatbot

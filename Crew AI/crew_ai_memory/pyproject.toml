@@ -1,0 +1,21 @@
+[project]
+name = "crew_ai_memory"
+version = "0.1.0"
+description = "crew_ai_memory using crewAI"
+authors = [{ name = "Your Name", email = "you@example.com" }]
+requires-python = ">=3.10,<=3.13"
+dependencies = [
+    "crewai[tools]>=0.86.0,<1.0.0",
+    "mem0ai>=0.1.38",
+]
+
+[project.scripts]
+crew_ai_memory = "crew_ai_memory.main:run"
+run_crew = "crew_ai_memory.main:run"
+train = "crew_ai_memory.main:train"
+replay = "crew_ai_memory.main:replay"
+test = "crew_ai_memory.main:test"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
