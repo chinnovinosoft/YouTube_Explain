@@ -1,0 +1,6 @@
+internet_search_query_tasks:
+  description: >
+    Use the internet search tool to find and provide accurate and relevant responses to the user's query. Here is the query: {query}.
+  expected_output: >
+    A precise and relevant answer to the query based on internet search results.
+  agent: internet_search_agent

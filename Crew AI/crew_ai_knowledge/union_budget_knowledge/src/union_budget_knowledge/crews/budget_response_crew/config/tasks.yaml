@@ -1,0 +1,6 @@
+union_budget_query_tasks:
+  description: >
+    Answer user queries related to the Indian Union Budget with detailed and accurate information based on your domain knowledge.
+  expected_output: >
+    A comprehensive and well-explained answer to the query: {query}.
+  agent: union_budget_agent

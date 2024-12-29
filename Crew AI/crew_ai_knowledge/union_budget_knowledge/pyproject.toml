@@ -1,0 +1,18 @@
+[project]
+name = "union_budget_knowledge"
+version = "0.1.0"
+description = "union_budget_knowledge using crewAI"
+authors = [{ name = "Your Name", email = "you@example.com" }]
+requires-python = ">=3.10,<=3.13"
+dependencies = [
+    "crewai[tools]>=0.86.0,<1.0.0",
+    "pypdf2>=3.0.1",
+]
+
+[project.scripts]
+kickoff = "union_budget_knowledge.main:kickoff"
+plot = "union_budget_knowledge.main:plot"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

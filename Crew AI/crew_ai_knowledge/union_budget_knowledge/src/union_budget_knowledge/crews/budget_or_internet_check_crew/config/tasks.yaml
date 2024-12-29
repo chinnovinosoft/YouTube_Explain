@@ -1,0 +1,6 @@
+classify_budget_query_tasks:
+  description: >
+    Determine whether the user's query is related to the Indian Union Budget. Return "union" if it is related or "NA" otherwise. Here is the query: {query}
+  expected_output: >
+    A classification result: "union" or "NA".
+  agent: budget_query_agent
