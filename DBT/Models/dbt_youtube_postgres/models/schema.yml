@@ -1,0 +1,16 @@
+
+version: 2
+
+models:
+  - name: customer_orders
+
+sources:
+  - name: youtube
+    database: youtube
+    schema: public
+    tables:
+      - name: restaurants
+      - name: menus
+      - name: customers
+      - name: orders
+      - name: orderdetails
