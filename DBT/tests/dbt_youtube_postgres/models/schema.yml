@@ -1,0 +1,42 @@
+
+version: 2
+
+models:
+  - name: customer_orders
+    columns: 
+      - name: customer_id
+        data_tests:
+          - unique 
+          - not_null 
+      - name: status
+        data_tests:
+          - accepted_values:
+              values: ['InProgress']
+      - name: customer_id
+        data_tests:
+          - relationships:
+              to: source('youtube','orders')
+              field: customer_id
+      - name: order_id
+        data_tests:
+          - range_validation:
+              column_name: order_id
+              min_value: 0
+              max_value: 100000
+      - name: order_date
+        data_tests:
+          - no_future_dates:
+              column_name: order_date
+
+sources:
+  - name: youtube
+    database: youtube
+    schema: public
+    tables:
+      - name: restaurants
+      - name: menus
+      - name: customers
+      - name: orders
+      - name: orderdetails
+      - name: stg_customers
+      - name: top_level_email_domains
