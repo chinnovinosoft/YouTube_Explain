@@ -1,0 +1,15 @@
+snapshots:
+  - name: sales2_snapshot
+    relation: source('youtube', 'sales')
+    config:
+      # schema: youtube_snapshots
+      database: youtube
+      unique_key: sale_id
+      strategy: check
+      check_cols:
+        - sale_amount
+        - sale_status
+        - amount 
+        - customer_id 
+        - product_id 
+      dbt_valid_to_current: "'9999-12-31'" 

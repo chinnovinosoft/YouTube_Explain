@@ -1,0 +1,11 @@
+snapshots:
+  - name: sales4_snapshot
+    relation: source('youtube', 'sales')
+    config:
+      # schema: youtube_snapshots
+      database: youtube
+      unique_key: sale_id
+      strategy: timestamp
+      updated_at: sale_timestamp
+      dbt_valid_to_current: "'9999-12-31'" 
+      hard_deletes: invalidate # options are: 'ignore', 'invalidate', or 'new_record'

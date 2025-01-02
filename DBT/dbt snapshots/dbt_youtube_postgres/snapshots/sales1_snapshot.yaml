@@ -1,0 +1,10 @@
+snapshots:
+  - name: sales1_snapshot
+    relation: source('youtube', 'sales')
+    config:
+      # schema: youtube_snapshots
+      database: youtube
+      unique_key: sale_id #column_name_or_expression
+      strategy: timestamp
+      updated_at: sale_timestamp
+      dbt_valid_to_current: "'9999-12-31'" 

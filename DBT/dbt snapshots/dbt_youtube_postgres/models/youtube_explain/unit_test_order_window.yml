@@ -1,0 +1,19 @@
+unit_tests:
+  - name: test_running_total
+    description: "Check the running total calculation for orders grouped by customer."
+    model: orders_window
+    given:
+      - input: source('youtube', 'orders')
+        rows:
+          - {order_id: 101, customer_id: 1, restaurant_id: 201, order_date: '2025-01-01', total_amount: 100}
+          - {order_id: 102, customer_id: 1, restaurant_id: 201, order_date: '2025-01-02', total_amount: 150}
+          - {order_id: 103, customer_id: 1, restaurant_id: 201, order_date: '2025-01-03', total_amount: 200}
+          - {order_id: 104, customer_id: 2, restaurant_id: 202, order_date: '2025-01-01', total_amount: 120}
+          - {order_id: 105, customer_id: 2, restaurant_id: 202, order_date: '2025-01-02', total_amount: 80}
+    expect:
+      rows:
+        - {customer_id: 1, order_id: 101, total_amount: 100, running_total: 300.00}
+        - {customer_id: 1, order_id: 102, total_amount: 150, running_total: 250.00}
+        - {customer_id: 1, order_id: 103, total_amount: 200, running_total: 450.00}
+        - {customer_id: 2, order_id: 104, total_amount: 120, running_total: 120.00}
+        - {customer_id: 2, order_id: 105, total_amount: 80, running_total: 200}
