@@ -1,0 +1,16 @@
+
+version: 2
+
+models:
+  - name: rest_sales
+  - name: dynamic_price
+  - name: rest_sales
+    
+
+sources:
+  - name: youtube
+    database: youtube
+    schema: public
+    tables:
+      - name: restaurants
+      

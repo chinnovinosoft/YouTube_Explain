@@ -1,0 +1,11 @@
+version: 2
+data_tests:
+  - name: monthly_orders_greater_than_hundred
+    description: >
+      Monthly orders should be greater than or min of 100
+  - name: total_amount_not_negative
+    description: >
+      The min value in total amount field should be min of 0 and not negative value
+  - name: check_date_format
+    description: >
+      The checks if the date format in the order_date column is in correct format OR not.
