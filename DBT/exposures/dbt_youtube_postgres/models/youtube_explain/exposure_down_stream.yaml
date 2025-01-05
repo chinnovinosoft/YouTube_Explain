@@ -1,0 +1,21 @@
+version: 2
+
+exposures:
+
+  - name: weekly_restaurant_metrics
+    label: restaurants saled by the Week
+    type: dashboard
+    maturity: high
+    url: https://bi.tool/dashboards/1
+    description: >
+      All models related to restaurants?
+
+    depends_on:
+      - ref('dynamic_price')
+      - ref('metrics')
+      - source('youtube','restaurants')
+      - ref('rest_sales')
+
+    owner:
+      name: Praveen Chinnareddy
+      email: mailpraveenreddy.c@gmai.com
