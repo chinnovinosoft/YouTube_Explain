@@ -1,0 +1,22 @@
+
+version: 2
+
+models:
+  - name: sales_summary
+
+
+sources:
+  - name: youtube
+    database: youtube
+    schema: public
+    tables:
+      - name: restaurants
+        freshness:
+          warn_after: {count: 12, period: hour}
+          error_after: {count: 12, period: day}
+        loaded_at_field: sale_timestamp
+        filter: sale_timestamp >= date_sub(current_date(), interval 1 day)
+      - name: source_indian_restaurant_data
+      - name: sales_transactions
+        config:
+          event_time: transaction_date 
