@@ -1,0 +1,6 @@
+packages:
+  - package: dbt-labs/dbt_utils
+    version: ["1.0.0"]  # Choose a version compatible with your dbt version
+# packages:
+#   - git: "https://github.com/dbt-labs/dbt-utils.git" # git URL
+#     revision: 1.0.0 # tag or branch name
