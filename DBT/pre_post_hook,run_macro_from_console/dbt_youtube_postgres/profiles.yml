@@ -1,0 +1,12 @@
+dbt_youtube_postgres:
+  outputs:
+    dev:
+      dbname: youtube
+      host: localhost
+      pass: postgres
+      port: 5432
+      schema: youtube_schema
+      threads: 1
+      type: postgres
+      user: '{{ env_var("DBT_USER_PRAVEEN") }}'
+  target: dev
