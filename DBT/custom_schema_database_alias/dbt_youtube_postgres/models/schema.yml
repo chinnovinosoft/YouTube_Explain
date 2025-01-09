@@ -1,0 +1,16 @@
+
+version: 2
+
+models:
+  - name: sales_init
+
+
+sources:
+  - name: youtube
+    database: youtube
+    schema: public
+    tables:
+      - name: source_indian_restaurant_data
+      - name: sales_transactions
+        config:
+          event_time: transaction_date 
