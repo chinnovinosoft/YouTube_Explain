@@ -1,0 +1,123 @@
+-- Optionally, enable the uuid-ossp extension if you want to use UUIDs for user IDs
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+CREATE TABLE kidplay_users (
+    user_id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    password_hash VARCHAR(255) NOT NULL,        -- hashed password
+    email VARCHAR(255) UNIQUE NOT NULL,
+    mobile VARCHAR(20),
+    app_average_daily_use NUMERIC(5,2),           -- e.g., average hours used per day
+    age_of_user INTEGER,
+    has_multiplayer BOOLEAN DEFAULT FALSE,        -- indicates if user has played multiplayer
+    subscription_year INTEGER,                    -- year when the user subscribed
+    subscription_plan VARCHAR(50),                -- e.g., "Basic", "Premium"
+    subscription_amount_paid NUMERIC(10,2) DEFAULT 0.00,  -- amount paid for subscription (in dollars)
+    addons_purchased JSONB,                       -- JSON array or object detailing tokens/add-ons purchased
+    total_spend NUMERIC(10,2) DEFAULT 0.00,         -- cumulative amount spent (subscription + add-ons)
+    billing_address TEXT,                         -- user's billing address
+    subscription_expiry_date DATE,                -- subscription expiry date
+    account_status VARCHAR(20) DEFAULT 'active',  -- e.g., active, inactive, suspended
+    date_joined DATE DEFAULT CURRENT_DATE,
+    last_login TIMESTAMP
+);
+INSERT INTO kidplay_users (
+    password_hash, email, mobile, app_average_daily_use, age_of_user, 
+    has_multiplayer, subscription_year, subscription_plan, 
+    subscription_amount_paid, addons_purchased, total_spend, 
+    billing_address, subscription_expiry_date, account_status, 
+    date_joined, last_login
+) VALUES
+(
+    'hashed_pass1',
+    'user1@gmail.com',
+    '9876543210',
+    2.50,
+    10,
+    TRUE,
+    2022,
+    'Premium',
+    29.99,
+    '{"tokens": 50, "extra_levels": 3}',
+    59.98,
+    '123 MG Road, Pune, Maharashtra, India',
+    '2023-12-31',
+    'active',
+    '2023-01-15',
+    '2023-04-25 10:30:00'
+),
+(
+    'hashed_pass2',
+    'user2@gmail.com',
+    '9123456780',
+    1.75,
+    8,
+    FALSE,
+    2021,
+    'Basic',
+    9.99,
+    '{"tokens": 20}',
+    9.99,
+    '456 Connaught Place, New Delhi, India',
+    '2023-06-30',
+    'active',
+    '2023-02-10',
+    '2023-04-20 15:00:00'
+),
+(
+    'hashed_pass3',
+    'user3@gmail.com',
+    '9012345678',
+    3.00,
+    12,
+    TRUE,
+    2023,
+    'Premium',
+    39.99,
+    '{"tokens": 100, "extra_levels": 5}',
+    39.99,
+    '789 Brigade Road, Bangalore, Karnataka, India',
+    '2024-01-31',
+    'active',
+    '2023-03-05',
+    '2023-04-26 08:00:00'
+),
+(
+    'hashed_pass4',
+    'user4@gmail.com',
+    '9988776655',
+    0.75,
+    7,
+    FALSE,
+    2022,
+    'Basic',
+    9.99,
+    '{}',
+    9.99,
+    '321 Linking Road, Mumbai, Maharashtra, India',
+    '2023-05-31',
+    'suspended',
+    '2023-04-01',
+    '2023-04-15 20:45:00'
+),
+(
+    'hashed_pass5',
+    'user5@gmail.com',
+    '8877665544',
+    2.00,
+    11,
+    TRUE,
+    2023,
+    'Premium',
+    29.99,
+    '{"tokens": 30}',
+    29.99,
+    '654 Anna Salai, Chennai, Tamil Nadu, India',
+    '2024-03-31',
+    'active',
+    '2023-05-20',
+    '2023-05-01 09:15:00'
+);
+
+select * from kidplay_users;
+
+SELECT subscription_year, subscription_plan, subscription_amount_paid, subscription_expiry_date FROM kidplay_users WHERE mobile = '9988776655'
