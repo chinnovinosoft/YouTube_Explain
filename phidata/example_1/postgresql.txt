@@ -1,0 +1,30 @@
+-- Create the table
+CREATE TABLE user_trades (
+  user_id INT,
+  trade_id INT,
+  stock_purchased VARCHAR(50),         -- e.g. 'RELIANCE'
+  quantity INT,                        -- number of shares bought in this trade
+  each_stock_price DECIMAL(10,2),        -- price per share in INR
+  total_amount DECIMAL(12,2),           -- total amount paid (quantity * each_stock_price)
+  all_stocks_list TEXT,                -- list of all stocks purchased by the user (comma separated)
+  overall_profit DECIMAL(12,2),         -- profit (or loss) from all trades
+  trade_date DATE,
+  PRIMARY KEY (user_id, trade_id)
+);
+
+-- Insert sample data for 10 users
+INSERT INTO user_trades (user_id, trade_id, stock_purchased, quantity, each_stock_price, total_amount, all_stocks_list, overall_profit, trade_date)
+VALUES
+  (1, 101, 'RELIANCE', 100, 2100.00, 210000.00, 'RELIANCE, TCS', 15000.00, '2025-03-01'),
+  (2, 102, 'TCS', 50, 3200.00, 160000.00, 'TCS, INFY', 10000.00, '2025-03-02'),
+  (3, 103, 'INFY', 200, 1500.00, 300000.00, 'INFY, HDFC', 20000.00, '2025-03-03'),
+  (4, 104, 'HDFC', 80, 2800.00, 224000.00, 'HDFC, SBIN', 12000.00, '2025-03-04'),
+  (5, 105, 'SBIN', 150, 450.00, 67500.00, 'SBIN, ICICI', 5000.00, '2025-03-05'),
+  (6, 106, 'ICICI', 120, 800.00, 96000.00, 'ICICI, KOTAK', 8000.00, '2025-03-06'),
+  (7, 107, 'KOTAK', 60, 1200.00, 72000.00, 'KOTAK, HDFC', 7000.00, '2025-03-07'),
+  (8, 108, 'ZEEL', 90, 350.00, 31500.00, 'ZEEL, M&M', 3000.00, '2025-03-08'),
+  (9, 109, 'M&M', 110, 950.00, 104500.00, 'M&M, TATA', 6000.00, '2025-03-09'),
+  (10, 110, 'TATA', 70, 500.00, 35000.00, 'TATA, INFY', 4000.00, '2025-03-10');
+
+
+select * from user_trades;
