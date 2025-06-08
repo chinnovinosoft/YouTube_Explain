@@ -1,0 +1,3 @@
+DE_Basic: Python,SQL,PySpark
+AWS: Glue, Redshift, Athena, S3, Lambda 
+Orchestration: Airflow

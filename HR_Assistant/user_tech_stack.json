@@ -1,0 +1,49 @@
+{
+  "items": [
+    {
+      "tech_stack": "Python",
+      "rating": "8",
+      "explanation": "I have very good experience in Python and have been working on this from the past six years."
+    },
+    {
+      "tech_stack": "SQL",
+      "rating": "8",
+      "explanation": "I have very good experience in SQL and have been working on this from the past six years."
+    },
+    {
+      "tech_stack": "PySpark",
+      "rating": "8",
+      "explanation": "I have very good experience in PySpark and have been working on this from the past six years."
+    },
+    {
+      "tech_stack": "Glue",
+      "rating": "8",
+      "explanation": "I have used Glue for ETL."
+    },
+    {
+      "tech_stack": "Redshift",
+      "rating": "8",
+      "explanation": "I have used Redshift for my target."
+    },
+    {
+      "tech_stack": "Athena",
+      "rating": "8",
+      "explanation": "I have used Athena for querying my source."
+    },
+    {
+      "tech_stack": "S3",
+      "rating": "8",
+      "explanation": "I have used S3 for storing my data lake files."
+    },
+    {
+      "tech_stack": "Lambda",
+      "rating": "2",
+      "explanation": "I haven't worked much with Lambda."
+    },
+    {
+      "tech_stack": "Airflow",
+      "rating": "8",
+      "explanation": "I have been using Airflow for the last four years to orchestrate all our ETLs."
+    }
+  ]
+}
