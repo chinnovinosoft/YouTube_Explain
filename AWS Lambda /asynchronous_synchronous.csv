@@ -1,0 +1,19 @@
+
+aws lambda invoke \
+  --function-name mylambda4 \
+  --invocation-type RequestResponse \
+  --cli-binary-format raw-in-base64-out \
+  --payload file://payload.json \
+  response5.json
+
+aws lambda invoke \
+  --function-name mylambda4 \
+  --invocation-type Event \
+  --cli-binary-format raw-in-base64-out \
+  --payload file://payload.json \
+  response.json
+
+brew install awscli
+
+aws configure
+
