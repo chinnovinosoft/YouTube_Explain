@@ -1,1 +1,52 @@
 DBT/dbt snapshots/dbt_youtube_postgres/.DS_Store
+.DS_Store
+Airflow/.DS_Store
+Airflow/DAGs/.DS_Store
+Apache Flink/.DS_Store
+Crew AI/.DS_Store
+Crew AI/crew_ai_memory/.DS_Store
+DBT/.DS_Store
+DBT/custom_schema_database_alias/.DS_Store
+DBT/custom_schema_database_alias/dbt_youtube_postgres/.DS_Store
+DBT/custom_schema_database_alias/dbt_youtube_postgres/models/.DS_Store
+DBT/dbt docs/.DS_Store
+DBT/dbt docs/dbt_youtube_postgres/.DS_Store
+DBT/dbt macros & jinja /.DS_Store
+DBT/dbt macros & jinja /dbt_youtube_postgres/.DS_Store
+DBT/dbt macros & jinja /dbt_youtube_postgres/models/.DS_Store
+DBT/dbt snapshots/.DS_Store
+DBT/dbt source freshness/.DS_Store
+DBT/dbt source freshness/dbt_youtube_postgres/.DS_Store
+DBT/env,project variables/dbt_youtube_postgres/.DS_Store
+DBT/env,project variables/dbt_youtube_postgres/models/.DS_Store
+DBT/exposures/.DS_Store
+DBT/exposures/dbt_youtube_postgres/.DS_Store
+DBT/Incremental Models/.DS_Store
+DBT/Incremental Models/dbt_youtube_postgres/.DS_Store
+DBT/Incremental Models/dbt_youtube_postgres/models/.DS_Store
+DBT/microbatch/dbt_youtube_postgres/.DS_Store
+DBT/microbatch/dbt_youtube_postgres/models/.DS_Store
+DBT/Models/.DS_Store
+DBT/Models/dbt_youtube_postgres/.DS_Store
+DBT/packages/.DS_Store
+DBT/packages/dbt_youtube_postgres/.DS_Store
+DBT/packages/dbt_youtube_postgres/models/.DS_Store
+DBT/pre_post_hook,run_macro_from_console/.DS_Store
+DBT/pre_post_hook,run_macro_from_console/dbt_youtube_postgres/.DS_Store
+DBT/pre_post_hook,run_macro_from_console/dbt_youtube_postgres/models/.DS_Store
+DBT/tests/.DS_Store
+DBT/tests/dbt_youtube_postgres/.DS_Store
+LangGraph/.DS_Store
+LangGraph/LangGraph_Examples_POC/.DS_Store
+LangSmith/.DS_Store
+mcp-langgraph/.DS_Store
+mcp/.DS_Store
+neo4j_genai/.DS_Store
+OPENAI_AGENTS/.DS_Store
+phidata/.DS_Store
+VOCODE/.DS_Store
+VOCODE/google_synthesizer_.venv/.DS_Store
+VOCODE/google_synthesizer_.venv/lib/.DS_Store
+VOCODE/google_synthesizer_.venv/lib/python3.11/.DS_Store
+VOCODE/google_synthesizer_.venv/lib/python3.11/site-packages/.DS_Store
+VOCODE/google_synthesizer_.venv/lib/python3.11/site-packages/vocode/.DS_Store

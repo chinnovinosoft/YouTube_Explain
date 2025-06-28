@@ -1,0 +1,26 @@
+[project]
+name = "hotel_guide"
+version = "0.1.0"
+description = "hotel_guide using crewAI"
+authors = [{ name = "Your Name", email = "you@example.com" }]
+requires-python = ">=3.10,<3.14"
+dependencies = [
+    "crewai[tools]>=0.130.0,<1.0.0",
+    "elevenlabs>=2.5.0",
+    "gradio>=5.35.0",
+    "psycopg2>=2.9.10",
+    "sounddevice>=0.5.2",
+    "spicy>=0.16.0",
+]
+
+[project.scripts]
+kickoff = "hotel_guide.main:kickoff"
+run_crew = "hotel_guide.main:kickoff"
+plot = "hotel_guide.main:plot"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.crewai]
+type = "flow"
