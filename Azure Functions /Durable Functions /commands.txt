@@ -1,0 +1,13 @@
+curl -X POST \
+  -H "Content-Type: application/json" \
+  -d '{"product_id":"ABC123","amount":250}' \
+  http://localhost:7071/api/orchestrators/process_order
+
+
+
+curl -X POST \
+-H "Content-Type: application/json" \  
+"http://localhost:7071/runtime/webhooks/durabletask/instances/b466edaad5bc45bb93362ca8b865f3e0/raiseEvent/ApprovalEvent" \             
+-d '{"approved": true}'
+
+
