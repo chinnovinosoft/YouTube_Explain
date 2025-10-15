@@ -9,3 +9,5 @@ langchain-community
 langchain_openai
 langchain_postgres
 langchain_core
+langchain_experimental
+spacy
